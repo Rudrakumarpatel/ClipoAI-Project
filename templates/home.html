@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>File Upload</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+      }
+
+      .container {
+        max-width: 600px;
+        margin: 50px auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+
+      h2 {
+        text-align: center;
+      }
+
+      .upload-container {
+        margin-bottom: 20px;
+      }
+
+      .upload-button {
+        background-color: #007bff;
+        color: #fff;
+        padding: 10px 20px;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+
+      #fileInput {
+        display: none;
+      }
+
+      #fileName {
+        margin-left: 10px;
+      }
+
+      .submit-button {
+        background-color: #007bff;
+        color: #fff;
+        padding: 10px 20px;
+        border-radius: 4px;
+        cursor: pointer;
+        display: block;
+        margin: 0 auto;
+      }
+
+      .submit-button:disabled {
+        background-color: #ccc;
+        cursor: not-allowed;
+      }
+    </style>
+  </head>
+  <body>
+    <form action="{% url 'home' %}" method="post">
+      {% csrf_token %}
+    <div class="container">
+      <h2>Upload MP4 File</h2>
+      <div class="upload-container">
+        <input type="file" id="fileInput" name="video_file" accept=".mp4" />
+        <label for="fileInput" class="upload-button">Select File</label>
+        <span id="fileName">No file chosen</span>
+      </div>
+      <button id="uploadBtn" class="submit-button" disabled>Upload</button>
+    </div>
+  </form>
+  </body>
+
+  <script>
+    document
+      .getElementById("fileInput")
+      .addEventListener("change", function () {
+        const fileName = this.value.split("\\").pop();
+        document.getElementById("fileName").textContent = fileName;
+        document.getElementById("uploadBtn").disabled = false;
+      });
+  </script>
+</html>

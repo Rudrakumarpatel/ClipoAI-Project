@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Start Button</title>
+    <style>
+      /* Button Styles */
+      .start-button {
+        display: inline-block;
+        padding: 12px 24px;
+        font-size: 16px;
+        font-weight: bold;
+        color: #fff;
+        background-color: #007bff;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        text-align: center;
+        text-decoration: none;
+        transition: background-color 0.3s;
+      }
+      .start-button:hover {
+        background-color: #0056b3;
+      }
+    </style>
+  </head>
+  <body>
+    {% csrf_token %}
+    <form action="{% url 'login' %}" method="get">
+      <button class="start-button">Start</button>
+    </form>
+    <script>
+      document
+        .getElementByClassName("start-button")
+        .addEventListener("click", function () {
+          window.location.href = "login.html";
+        });
+    </script>
+  </body>
+</html>
